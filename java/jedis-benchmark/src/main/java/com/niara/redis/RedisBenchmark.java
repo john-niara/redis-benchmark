@@ -1,22 +1,25 @@
 package com.niara.redis;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.UnknownHostException;
 import java.util.Calendar;
 
-import redis.clients.jedis.HostAndPort;
+//import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.Jedis;
-import redis.clients.jedis.tests.HostAndPortUtil;
+import redis.clients.jedis.Pipeline;
+//import redis.clients.jedis.tests.HostAndPortUtil;
 
 public class RedisBenchmark {
-  private static HostAndPort hnp = HostAndPortUtil.getRedisServers().get(0);
+  //private static HostAndPort hnp = HostAndPort();
   private static final int TOTAL_OPERATIONS = 200000;
 
   public static void main(String[] args) throws UnknownHostException, IOException {
     /*
       Pipelined example
      */
-    Jedis jedis = new Jedis(hnp.getHost(), hnp.getPort());
+    Jedis jedis = new Jedis("localhost");
     jedis.connect();
     //jedis.auth("foobared");
     jedis.flushAll();
@@ -36,7 +39,6 @@ public class RedisBenchmark {
     /*
       Non-pipelined example
      */
-    Jedis jedis = new Jedis(hnp.getHost(), hnp.getPort());
     jedis.connect();
     //jedis.auth("foobared");
     jedis.flushAll();
