@@ -1,0 +1,9 @@
+---
+- hosts: "{{common}}"
+  remote_user: root
+  tasks:
+  - name: install gcc
+    yum: name=gcc state=latest
+  - name: install jemalloc
+    yum: name=jemalloc state=latest
+    
